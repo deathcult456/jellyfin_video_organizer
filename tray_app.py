@@ -7,6 +7,7 @@ from video_organizer import watch_directory, load_config
 from translations import TRANSLATIONS
 import logging
 import tempfile
+import psutil  # Ajout de psutil pour la vérification des processus
 
 class WatcherThread(QThread):
     def __init__(self, path):
@@ -27,6 +28,33 @@ def resource_path(relative_path):
         base_path = os.path.abspath(".")
     return os.path.join(base_path, relative_path)
 
+def is_process_running(pid):
+    """Vérifie si un processus avec le PID donné est en cours d'exécution"""
+    try:
+        return psutil.pid_exists(pid)
+    except:
+        return False
+
+def check_and_clean_lock_file(lock_file):
+    """Vérifie et nettoie le fichier de verrouillage si nécessaire"""
+    try:
+        if os.path.exists(lock_file):
+            with open(lock_file, 'r') as f:
+                old_pid = int(f.read().strip())
+            if not is_process_running(old_pid):
+                os.remove(lock_file)
+                return True
+            return False
+        return True
+    except:
+        # En cas d'erreur, on suppose qu'il est sûr de supprimer le fichier
+        try:
+            if os.path.exists(lock_file):
+                os.remove(lock_file)
+        except:
+            pass
+        return True
+
 class VideoOrganizerTray:
     def __init__(self):
         try:
@@ -46,7 +74,8 @@ class VideoOrganizerTray:
             self.tmp_dir = tempfile.gettempdir()
             self.lock_file = os.path.join(self.tmp_dir, 'video_organizer.lock')
             
-            if os.path.exists(self.lock_file):
+            # Vérifier et nettoyer le fichier de verrouillage si nécessaire
+            if not check_and_clean_lock_file(self.lock_file):
                 QMessageBox.warning(None, t('app_name'), t('already_running'))
                 sys.exit(1)
                 

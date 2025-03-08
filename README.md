@@ -2,13 +2,13 @@
 
 🇫🇷 **Organiseur automatique de séries pour Jellyfin**
 
-Organise automatiquement vos fichiers vidéo pour une compatibilité parfaite avec Jellyfin. Place chaque épisode dans son propre dossier pour assurer une détection correcte par Jellyfin. Fonctionne silencieusement dans la barre des tâches Windows et surveille vos dossiers de séries. Support français et anglais.
+Organise automatiquement vos fichiers vidéo pour une compatibilité parfaite avec Jellyfin. Petit script pour Windows : chaque épisode qui n'est pas dans un dossier, le scipt va créez un dossier avec son nom et le placez-le dedans. Fonctionne silencieusement dans la barre des tâches Windows et surveille vos dossiers de séries. Support français et anglais. 
 
 *Mots-clés : Jellyfin, organiseur de séries, automatisation Windows, gestionnaire de fichiers, détection automatique, media server*
 
 🇬🇧 **Automatic TV Shows Organizer for Jellyfin**
 
-Automatically organize your video files for perfect Jellyfin compatibility. Places each episode in its own folder to ensure proper detection by Jellyfin. Runs silently in the Windows system tray and monitors your TV shows folders. French and English support.
+Automatically organize your video files for perfect Jellyfin compatibility. Small script for Windows: each episode that is not in a folder, the script will create a folder with its name and place it in it. Runs silently in the Windows system tray and monitors your TV shows folders. French and English support.
 
 *Keywords: Jellyfin, TV shows organizer, Windows automation, file manager, auto-detection, media server*
 
